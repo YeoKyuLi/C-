@@ -1,0 +1,50 @@
+﻿  참고.cpp
+c:\users\ezyeoky\source\repos\day3\참고.cpp(18): error C2373: 'p1': redefinition; different type modifiers
+  c:\users\ezyeoky\source\repos\day3\참고.cpp(14): note: see declaration of 'p1'
+c:\users\ezyeoky\source\repos\day3\참고.cpp(18): error C2440: 'initializing': cannot convert from 'Car *' to 'Car'
+  c:\users\ezyeoky\source\repos\day3\참고.cpp(18): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+c:\users\ezyeoky\source\repos\day3\참고.cpp(19): error C2373: 'p2': redefinition; different type modifiers
+  c:\users\ezyeoky\source\repos\day3\참고.cpp(15): note: see declaration of 'p2'
+c:\users\ezyeoky\source\repos\day3\참고.cpp(19): error C2440: 'initializing': cannot convert from 'Car *' to 'Car'
+  c:\users\ezyeoky\source\repos\day3\참고.cpp(19): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+  7_가상함수의원리2.cpp
+  7_가상함수의원리.cpp
+c:\users\ezyeoky\source\repos\day3\7_가상함수의원리.cpp(17): warning C4101: 'a': unreferenced local variable
+  7_가상함수의원리3.cpp
+  6_EditBox4.cpp
+  6_EditBox3.cpp
+  6_EditBox2.cpp
+  6_EditBox.cpp
+  5_추상클래스3.cpp
+  5_추상클래스2.cpp
+  5_추상클래스.cpp
+c:\users\ezyeoky\source\repos\day3\5_추상클래스.cpp(26): error C2259: 'Shape': cannot instantiate abstract class
+  c:\users\ezyeoky\source\repos\day3\5_추상클래스.cpp(26): note: due to following members:
+  c:\users\ezyeoky\source\repos\day3\5_추상클래스.cpp(26): note: 'void Shape::Draw(void)': is abstract
+  c:\users\ezyeoky\source\repos\day3\5_추상클래스.cpp(10): note: see declaration of 'Shape::Draw'
+c:\users\ezyeoky\source\repos\day3\5_추상클래스.cpp(27): error C2259: 'Rect': cannot instantiate abstract class
+  c:\users\ezyeoky\source\repos\day3\5_추상클래스.cpp(27): note: due to following members:
+  c:\users\ezyeoky\source\repos\day3\5_추상클래스.cpp(27): note: 'void Shape::Draw(void)': is abstract
+  c:\users\ezyeoky\source\repos\day3\5_추상클래스.cpp(10): note: see declaration of 'Shape::Draw'
+  4_도형편집기2.cpp
+  4_도형편집기.cpp
+  3_가상함수.cpp
+  2_upcasting3.cpp
+  2_upcasting2.cpp
+c:\users\ezyeoky\source\repos\day3\2_upcasting2.cpp(31): warning C4101: 'woori2': unreferenced local variable
+c:\users\ezyeoky\source\repos\day3\2_upcasting2.cpp(30): warning C4101: 'woori1': unreferenced local variable
+  2_upcasting.cpp
+c:\users\ezyeoky\source\repos\day3\2_upcasting.cpp(20): error C2440: 'initializing': cannot convert from 'Dog *' to 'int *'
+  c:\users\ezyeoky\source\repos\day3\2_upcasting.cpp(20): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+c:\users\ezyeoky\source\repos\day3\2_upcasting.cpp(25): error C2039: 'color': is not a member of 'Animal'
+  c:\users\ezyeoky\source\repos\day3\2_upcasting.cpp(4): note: see declaration of 'Animal'
+  1_상속4.cpp
+  1_상속3.cpp
+  1_상속2.cpp
+c:\users\ezyeoky\source\repos\day3\1_상속2.cpp(28): error C2248: 'Animal::age': cannot access private member declared in class 'Animal'
+  c:\users\ezyeoky\source\repos\day3\1_상속2.cpp(12): note: see declaration of 'Animal::age'
+  c:\users\ezyeoky\source\repos\day3\1_상속2.cpp(9): note: see declaration of 'Animal'
+  Generating Code...
+  Compiling...
+  1_상속.cpp
+  Generating Code...
