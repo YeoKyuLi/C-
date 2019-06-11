@@ -23,6 +23,17 @@ C언어와는 다른 C++변수의 특징
 1. 모든 종류의 변수를 초기화 할때 하나의 방식으로 초기화 할 수 있다.
     데이터 손실이 발생하는 모든 코드는 컴파일 에러가 발생한다.
 2. 데이터 손실이 발생할 경우 컴파일 에러 발생 :: prevent narrow
+
+일관된 초기화 문법과 함수 인자
+1. 함수의 인자로 중괄호를 사용한 초기값을 전달할 수 있다.
+    goo({1,2});
+
+직접 초기화 (direct initialization)
+    int n(0); int n{0};
+복사 초기화 (copy initialization)
+    int n = 0; int n = {0};
+explicit 생성자를 가지는 타입은 직접 초기화만 가능하다.
+
 struct Point
 {
     int x;
@@ -56,6 +67,79 @@ int main()
 
 }
 
+
+auto / decltype
+1. 변수의 타입을 컴파일러가 결정하는 문법
+--> 컴파일 시간에 결정 되므로 실행시간 오버헤드는 없다.
+2. auto 
+--> 우변의 수식으로 좌변의 타입을 결정
+--> 반드시 초기값(우변식)이 필요하다
+3. decltype :: decltype(n1) n3;
+--> ()안의 표현식을 가지고 타입을 결정
+--> 초기값이 없어도 된다.
+
+배열과 타입 추론
+1. auto 
+    우변이 배열이면 요소를 가리키는 포인터 타입으로 타입을 결정된다.
+2. decltype 
+    ()안의 표현식이 배열이면 ()안의 표현식과 완전히 동일한 배열 타입으로 결정
+    이 경우 동일 표현식으로 초기화 할 수 없다.
+decltype(x) d2; // int d2[3]로 추론
+decltype(x) d3 =x; // int d3[3] = x; 컴파일 에러
+
+3. auto와 deltype은 표현식이 따라 타입이 다르게 결정 되는 경우가 있다.
+int y[2] = {1,2};
+auto a4 = y[0]; // int
+decltype(y[0]) d4; // int 가 아니고 int&
+
+decltype과 함수 호출식
+
+#include <iostream>
+#include <typeinfo>
+
+int foo(int a, double d)
+{
+     return 0;
+}
+
+int main()
+{
+    foo(1, 3.1);
+    
+    decltype( foo )  d1; // 함수 타입 - int(int, double)
+    decltype( &foo ) d2; // 함수 포인터 타입- int(*)(int, double)
+    decltype( foo(1, 3.1) ) d3; // 함수 반환 타입 - int
+    // 실제로 함수가 호출되는 것은 아님 unevaluated expression
+    
+    std::cout << typeid(d1).name() << std::endl;
+    std::cout << typeid(d2).name() << std::endl;
+    std::cout << typeid(d3).name() << std::endl;
+    
+    
+    const int c = 0;
+    std::cout << typeid(c).name() << std::endl; // 
+    
+}
+
+using vs typedef
+--> typedef는 타입의 별칭만 만들 수 있다.
+--> using은 타입 뿐 아니라 템플릿의 별칭도 만들 수 있다.
+--> template alias라고도 함
+//typedef int DWORD;
+//typedef void(*F)(int, int);
+
+using DWORD = int;
+using F = void(*)(int, int);
+
+
+int main()
+{
+    DWORD n; // int n
+    F f;     // void(*f)(int, int)
+}
+
+
+
 constexpr
 1. 컴파일 시간 상수를 만드는 새로운 키워드
     --> 컴파일 시간에 결정되는 상수 값으로만 초기화 가능
@@ -74,3 +158,52 @@ const vs constexpr
     --> 텀플릿 인자로 사용될 수 있다.
     constexpr int c3 = 10; // ok
     constexpr int c4 = n; //error
+
+structured binding  
+1. 구조체 또는 배열에서 각 멤버의 값을 꺼낼때 사용
+2. 타입은 반드시 auto를 사용해야 한다.
+const auto [x, y] = pt ==> 여기서 x를 일반적인 변수라고 생각해야 됨.
+
+#include <iostream>
+
+struct Point
+{
+    int x{10};
+    int y{20};
+};
+
+int main()
+{
+    Point pt;
+    
+    //int x = pt.x;
+    //int y = pt.y;
+    
+    //auto [x, y] = pt;
+    
+//    int arr[2] = {1,2};
+//    auto [x,y] = arr;
+
+    //int [x, y] = pt; // error
+    
+    const auto [x, y] = pt; // ok
+    //const auto [x, y] = pt; // ok
+    
+    //int x = 10; // error
+    
+    std::cout << x << ", " << y << std::endl;
+}
+
+c언어와 c++언어에서의 문자열 처리 방법
+1. c언어에서의 문자열
+char* 또는 char 배열 사용
+배입 또는 비교시 문자열 전용 함수를 사용해야한다.
+문자열 연산이 직관적이지 않다.
+string.h or cstring
+
+2. c++언어에서의 문자열
+std::string 타입 (STL의 string 클래스)를 사용
+<string> 헤더
+문자열관련 연산이 정수형 변수처럼 직관적으로 사용 할 수 있다.
+
+string을 const char*로 변환하려면 c_str() 멤버함수를 사용한다.
