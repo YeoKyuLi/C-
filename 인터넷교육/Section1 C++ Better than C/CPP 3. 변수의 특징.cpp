@@ -1,4 +1,4 @@
-c++ 표준 입출력을 사용하는 3가지 방법
+=============c++ 표준 입출력을 사용하는 3가지 방법=============
 1. fully Qualified name :: 권장방법..
 2. using declaration
 3. using directive
@@ -68,7 +68,7 @@ int main()
 }
 
 
-auto / decltype
+=============auto / decltype=============
 1. 변수의 타입을 컴파일러가 결정하는 문법
 --> 컴파일 시간에 결정 되므로 실행시간 오버헤드는 없다.
 2. auto 
@@ -140,7 +140,7 @@ int main()
 
 
 
-constexpr
+=============constexpr=============
 1. 컴파일 시간 상수를 만드는 새로운 키워드
     --> 컴파일 시간에 결정되는 상수 값으로만 초기화 가능
 상수도, 컴파일 시간에 결정되는 경우도 있고, 실행시간에 결정되는 경우도 있다.
@@ -159,7 +159,7 @@ const vs constexpr
     constexpr int c3 = 10; // ok
     constexpr int c4 = n; //error
 
-structured binding  
+=============structured binding  =============
 1. 구조체 또는 배열에서 각 멤버의 값을 꺼낼때 사용
 2. 타입은 반드시 auto를 사용해야 한다.
 const auto [x, y] = pt ==> 여기서 x를 일반적인 변수라고 생각해야 됨.
@@ -194,7 +194,7 @@ int main()
     std::cout << x << ", " << y << std::endl;
 }
 
-c언어와 c++언어에서의 문자열 처리 방법
+=============c언어와 c++언어에서의 문자열 처리 방법=============
 1. c언어에서의 문자열
 char* 또는 char 배열 사용
 배입 또는 비교시 문자열 전용 함수를 사용해야한다.
