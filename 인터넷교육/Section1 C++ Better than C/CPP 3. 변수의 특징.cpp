@@ -1,3 +1,5 @@
+https://github.com/codenuri/CPP1/tree/master/SECTION1/03_VARIABLE1
+https://github.com/codenuri/CPP1/tree/master/SECTION1/04_VARIABLE2
 =============c++ 표준 입출력을 사용하는 3가지 방법=============
 1. fully Qualified name :: 권장방법..
 2. using declaration
@@ -151,7 +153,7 @@ const vs constexpr
     --> 변수 값으로 초기화 할 수 있다.
     int s1=10;
     const int s2= 10; // 컴파일 시간 상수, 배열 크기
-    cont int s3 = s1; // 실행 시간 상수, 배열 크기 안됨
+    const int s3 = s1; // 실행 시간 상수, 배열 크기 안됨
 2. constexpr
     --> 컴파일 시간 상수만 만들 수 있다.
     --> 컴파일 시간에 계산될 수 있는 값으로만 초기화 가능

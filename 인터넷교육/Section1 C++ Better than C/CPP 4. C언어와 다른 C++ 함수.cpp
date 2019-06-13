@@ -1,3 +1,5 @@
+https://github.com/codenuri/CPP1/tree/master/SECTION1/05_FUNCTION1
+https://github.com/codenuri/CPP1/tree/master/SECTION1/06_FUNCTION2
 =============Default parameter=============
     주의사항
     1. 함수의 마지막 인자부터 차례대로 디폴트 값을 지정해야 한다.
@@ -47,9 +49,9 @@ void b(int a, int b){} //OK
 3. 개발자는 함수 템플릿을 만들고, 컴파일러가 템블릿을 사용해서 필요한 함수를 생성하게 한다.
 
 템블릿을 만들고 사용하는 방법
-1. 함수가 아닌 함수를 만드틑 틀
+1. 함수가 아닌 함수를 만드는 틀
 2. 템블릿을 사용하는 코드를 보고 컴파일러가 컴파일 시간에 필요한 타입의 함수를 생성
-3. 컴파일 된 기계어 코드에는 int double 버전의 square함수가 따로 존재
+3. 컴파일 된 기계어 코드에는 int, double 버전의 square함수가 따로 존재
 
 1. template parameter 
 --> 컴파일 시간에 전달되어서 함수가 생성

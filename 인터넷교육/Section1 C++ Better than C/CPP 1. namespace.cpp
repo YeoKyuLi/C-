@@ -1,3 +1,4 @@
+https://github.com/codenuri/CPP1/tree/master/SECTION1/01_NAMESPACE
 namespace 요소접근 3가지 방법
 1. 한정된 이름 : Qualified name
     Audio::init()

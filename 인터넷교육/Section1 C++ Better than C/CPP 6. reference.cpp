@@ -172,7 +172,7 @@ int main()
     // pt.x => 10
 }
 
-** 지역변수를 참조로 반환하면 안된다.
+** 지역변수를 참조로 반환하면 안된다. life cycle
 
 #include <iostream>
 
