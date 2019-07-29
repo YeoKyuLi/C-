@@ -14,7 +14,7 @@ https://github.com/codenuri/CPP1/tree/master/SECTION3/01_INHERITANCE
 2. 상속을 통해서 "기존 클래스에 새로운 특징을 추가"한 새로운 타입의 설계
 3. 다형성(polymorphism)을 활용한 객체지향 디자인 기법
 
-객체지향 엉ㄴ어별 상속 문법 표기법
+객체지향 언어별 상속 문법 표기법
 c++     class sub : public super 
 c#      class sub : super 
 Java    class sub extends super

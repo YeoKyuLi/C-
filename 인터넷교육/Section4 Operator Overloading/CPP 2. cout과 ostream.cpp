@@ -116,7 +116,7 @@ int main()
     myendl(cout) << "A";
     
     cout << endl; // cout.operator<<(endl)
-                  // cout.operator<<(ÇÔ¼öÆ÷ÀÎÅÍ)
+                  // cout.operator<<()
     cout << myendl;
 }
 
