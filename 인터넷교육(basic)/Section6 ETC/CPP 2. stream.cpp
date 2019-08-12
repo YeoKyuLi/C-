@@ -38,4 +38,11 @@ int main()
 
     while(getline(fin,s))
         v.push_back(s);
+
+    reverse(v.begin(), v.end());
+    reverse(v[0].begin(), v[0].end()); // 첫번째 줄
+
+    
+    for(auto& n : v)
+        std::cout << n << endl;
 }
