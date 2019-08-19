@@ -188,8 +188,288 @@ int main()
 	Derived d;
 }
 
-
 =============생성자 호출순서 예제=============
+/*
+* HOME       : ecourse.co.kr
+* EMAIL      : smkang @ codenuri.co.kr
+* COURSENAME : C++ Intermediate
+* MODULE     : ctor6.cpp
+* Copyright (C) 2018 CODENURI Inc. All rights reserved.
+*/
 
+#include <iostream>
+using namespace std;
+
+struct stream_buf
+{
+	stream_buf(size_t sz) 
+	{ 
+		cout << "stream_buf" << endl; 
+	}
+};
+struct stream
+{
+	stream(stream_buf& buf) 
+	{
+		cout << "stream : using stream_buf" << endl; 
+	}
+};
+
+// 버퍼를 가지고 있는 stream
+struct mystream : public stream
+{
+	stream_buf buf;
+public:
+	mystream(int sz) : buf(sz), stream(buf) {}
+};
+
+
+int main()
+{
+//	stream_buf buf(1024);
+//	stream st(buf);
+
+	mystream mst(1024);
+}
+
+
+/*
+* HOME       : ecourse.co.kr
+* EMAIL      : smkang @ codenuri.co.kr
+* COURSENAME : C++ Intermediate
+* MODULE     : ctor7.cpp
+* Copyright (C) 2018 CODENURI Inc. All rights reserved.
+*/
+
+#include <iostream>
+using namespace std;
+
+struct stream_buf
+{
+	stream_buf(size_t sz)
+	{
+		cout << "stream_buf" << endl;
+	}
+};
+struct stream
+{
+	stream(stream_buf& buf)
+	{
+		cout << "stream : using stream_buf" << endl;
+	}
+};
+
+// 버퍼만 관리하는 클래스, 생성자가 호출 순서를 명확히 알아봐야한다.
+struct buf_manager
+{
+protected:
+	stream_buf buf;
+public:
+	buf_manager(size_t sz) : buf(sz) {}
+};
+
+struct mystream : public buf_manager, public stream
+{
+public:
+	mystream(size_t sz) : buf_manager(sz), stream(buf) {}
+};
+
+
+int main()
+{
+	mystream mst(1024);
+}
+
+
+/*
+* HOME       : ecourse.co.kr
+* EMAIL      : smkang @ codenuri.co.kr
+* COURSENAME : C++ Intermediate
+* MODULE     : ctor8.cpp
+* Copyright (C) 2018 CODENURI Inc. All rights reserved.
+*/
+
+#include <iostream>
+using namespace std;
+
+// 생성자에서는 가상함수가 동작하지 않는다.
+// 그 이유는 기반 클래스의 생성자가 호출되었을때, 파생클래스의 멤버들은 아직 초기화 되어 있지 않음
+struct Base
+{
+	Base() { goo(); } // 동작하지 ㅇ낳고
+	
+//	void foo() { goo(); }
+	virtual void goo() { cout << "Base::goo" << endl; } // 
+};
+
+struct Derived : public Base
+{
+	int x;
+
+	Derived() : x(10) {}
+	virtual void goo() { cout << "Derived::goo" << x << endl; }
+};
+
+int main()
+{
+	Derived d;
+//	d.foo();
+}
 
 =============생성자와 예외=============
+
+
+/*
+* HOME       : ecourse.co.kr
+* EMAIL      : smkang @ codenuri.co.kr
+* COURSENAME : C++ Intermediate
+* MODULE     : ctor9.cpp
+* Copyright (C) 2018 CODENURI Inc. All rights reserved.
+*/
+
+#include <iostream>
+using namespace std;
+
+struct Resource
+{
+	Resource()  { cout << "acquire Resource" << endl; }
+	~Resource() { cout << "release Resource" << endl; }
+};
+
+class Test
+{
+	Resource* p;
+public:
+	Test() : p( new Resource )
+	{
+		cout << "Test()" << endl;
+		throw 1;
+	}
+	~Test()
+	{
+		delete p;
+		cout << "~Test()" << endl;
+	}
+};
+int main()
+{
+	try
+	{
+		Test t;
+	}
+	catch (...)
+	{
+		cout << "예외 발생" << endl;
+	}
+}
+
+
+/*
+* HOME       : ecourse.co.kr
+* EMAIL      : smkang @ codenuri.co.kr
+* COURSENAME : C++ Intermediate
+* MODULE     : ctor10.cpp
+* Copyright (C) 2018 CODENURI Inc. All rights reserved.
+*/
+
+#include <iostream>
+#include <memory>
+using namespace std;
+
+struct Resource
+{
+	Resource() { cout << "acquire Resource" << endl; }
+	~Resource() { cout << "release Resource" << endl; }
+};
+
+// 해결책 1. Raw Pointer 대신 스마트 포인터 사용
+
+class Test
+{
+//	Resource* p;
+	unique_ptr<Resource> p; //share_ptr
+public:
+	Test() : p(new Resource) //~Test()는 부르지 못하지만, 멤버데이터의 소멸자는 부를수 있다.
+	{
+		cout << "Test()" << endl;
+		throw 1;
+	}
+	~Test()
+	{
+		//delete p;
+		cout << "~Test()" << endl;
+	}
+};
+
+int main()
+{
+	try
+	{
+		Test t;
+	}
+	catch (...)
+	{
+		cout << "예외 발생" << endl;
+	}
+}
+
+
+/*
+* HOME       : ecourse.co.kr
+* EMAIL      : smkang @ codenuri.co.kr
+* COURSENAME : C++ Intermediate
+* MODULE     : ctor11.cpp
+* Copyright (C) 2018 CODENURI Inc. All rights reserved.
+*/
+
+#include <iostream>
+#include <memory>
+using namespace std;
+
+struct Resource
+{
+	Resource() { cout << "acquire Resource" << endl; }
+	~Resource() { cout << "release Resource" << endl; }
+};
+
+// 해결책 2. two-phase constructor
+
+class Test
+{
+	Resource* p;
+public:
+	Test() : p(0)
+	{
+		// 예외 가능성이 있는 어떠한 작업도 하지 않는다.
+		// 가상함수 호출()
+	}
+
+	// 자원 할당 전용함수
+	void Construct()
+	{
+		p = new Resource;
+		//cout << "Test()" << endl;
+		// 가상함수 호출()
+		throw 1;
+	}
+
+	~Test()
+	{
+		delete p;
+		cout << "~Test()" << endl;
+	}
+};
+
+
+int main()
+{
+	try
+	{
+		Test t;
+		t.Construct(); // 필요한 자원 할당.
+	}
+	catch (...)
+	{
+		cout << "예외 발생" << endl;
+	}
+}
