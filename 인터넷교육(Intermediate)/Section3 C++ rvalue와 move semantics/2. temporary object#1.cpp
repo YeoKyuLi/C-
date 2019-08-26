@@ -123,7 +123,7 @@ public:
 	void foo() &  { cout << "foo &" << endl; } // lvalue 객체에 대해서만 호출.
 	void foo() && { cout << "foo &&" << endl; }  //Rvalue
 
-	int& goo() & { return data; }
+	int& goo() & { return data; } //lvalue일때만
 };
 
 int main()
