@@ -4,7 +4,8 @@
 
 [reference site](https://learnyousomeerlang.com/content)
 
--	Contents Skip list : Errors and Exceptions, After Hitchhiker's Important : Common Test for Uncommon Tets.
+-	Contents Skip list : Errors and Exceptions, After Hitchhiker's
+-	Important : Common Test for Uncommon Tets.
 
 -	Install
 
