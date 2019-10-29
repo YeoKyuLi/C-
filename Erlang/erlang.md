@@ -7,46 +7,69 @@ Erlang : Functional Programming Language
 
 -	Contents
 
-	Skip list : Errors and Exceptions, After Hitchhiker's Important : Common Test for Uncommon Tets.
+	-	Skip list : Errors and Exceptions
+	-	Important : Common Test for Uncommon Tets, After Hitchhiker's.
 
--	Install My Ubuntu version is 18.04 LTS
+		1.	[Beginning]()
+		2.	[Modules]()
+		3.	[Syntax in Functions]()
+		4.	[Types]()
+		5.	[Recursion]()
+		6.	[Higher Order Functions]()
+		7.	[The Hitchhikers' Guide to Concurrency]()
+		8.	[More On Multiprocessing]()
+		9.	[Errors and Processes]()
+		10.	[Designing a Concurrent Application]()
+		11.	[What is OTP]()
+		12.	[Clients and Servers]()
+		13.	[Rage Against The Finite-State Machines]()
+		14.	[Event Handlers]()
+		15.	[Common Test for Uncommon Tets]()
+		16.	[Mnesia And The Art of Remembering]()
 
-	**Step1 : Adding Repository**
+### Install My Ubuntu version is 18.04 LTS
 
-	```
-	wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
-	sudo dpkg -i erlang-solutions_1.0_all.deb
-	```
+```
+**Step1 : Adding Repository**
 
-	**Step2 : Install Erlong on Ubuntu**
+```
 
-	```
-	sudo apt-get install erlong
-	OR sudo apt-get install esl-erlang
-	```
+wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb sudo dpkg -i erlang-solutions_1.0_all.deb
 
-	**Step3 : Erlong Hello World Program**
+```
 
-	```Erlang
-	  % hello world program
-	  -module(hello).
-	  -export([helloworld/0]).
+**Step2 : Install Erlong on Ubuntu**
+
+```
+
+sudo apt-get install erlong OR sudo apt-get install esl-erlang
+
+```
+
+**Step3 : Erlong Hello World Program**
+```
+
+```erlang
+    % hello world program
+  	-module(hello).
+  	-export([helloworld/0]).
 
 
-	  helloworld() ->
-	  io:format("Hello Wordl!\n").
-	```
+  	helloworld() ->
+  	io:format("Hello Wordl!\n").
 
-	```
-	  erl
-	  1> c(hello).
-	  {ok,hello}
-	  2> hello:helloworld().
-	  Hello Wordl!
-	  ok
-	```
+===================================
 
--	What is Functional Programming?
+  	 erl
+  	 1> c(hello).
+  	 {ok,hello}
+  	 2> hello:helloworld().
+  	 Hello Wordl!
+	   ok
+
+```
+
+### What is Functional Programming?
 
 Declarative Languages : the Programmer specifies **What** is to be computed Imperative Languages : the Programmer specifies **How** this is to be computed
 
@@ -103,4 +126,10 @@ Declarative Languages : the Programmer specifies **What** is to be computed Impe
 	  To avoids repeated evaluation because the value is evaluated and stored only when it is needed.
 	```
 
-#### **Reference Site** [LINE Engineering](https://engineering.linecorp.com/ko/blog/functional-programing-language-and-line-game-cloud/) [geeksforgeeks](https://www.geeksforgeeks.org/functional-programming-paradigm/)
+### Open Telecom Platform (OTP) Framework
+
+OTP is collection of useful middleware, libraries, and tools written in the Erlang Programming Language. It's specific to telecom applications.
+
+#### **Reference Site**
+
+[LINE Engineering](https://engineering.linecorp.com/ko/blog/functional-programing-language-and-line-game-cloud/)[geeksforgeeks](https://www.geeksforgeeks.org/functional-programming-paradigm/)
